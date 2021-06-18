@@ -19,21 +19,66 @@
         </div>
     </header>
     <main>
-        <h2>COMPUTER</h2>
-        <div id="computer-die-1"><p>Die #1</p></div>
-        <div id="computer-die-2"><p>Die #2</p></div>
-        <div id="computer-results-current"><p>Current score:</p></div>
-        <div id="computer-results-total"><p>Total score:</p></div>
+        <div id="title-rounds"><h1></h1></div>
 
-        <h2>HUMAN</h2>
-        <div id="human-die-1"><p>Die #1</p></div>
-        <div id="human-die-2"><p>Die #2</p></div>
-        <div id="human-results-current"><p>Current score:</p></div>
-        <div id="human-results-total"><p>Total score:</p></div>
+        <div class="player-board-container">
+            <div class="buffer-container"></div>
+            <!-- Player board: Computer -->
+            <div class="player-board">
+                <div>
+                    <h2>COMPUTER</h2>
+                </div>
 
-        <h2>Buttons</h2>
-        <button class="button" id="roll-dice">Roll dice</button>
-        <button class="button" id="new-game">New game</button>
+                <div class="dice-container">
+                    <div id="computer-die-1">
+                        <img class="die-image" id="computer-die-image-1" src="" alt="">
+                    </div>
+                    <div id="computer-die-2">
+                        <img class="die-image" id="computer-die-image-2" src="" alt="">
+                    </div>
+                </div>
+
+                <div id="computer-results-current">
+                    <p>Current score:</p>
+                </div>
+
+                <div class="total-score" id="computer-results-total">
+                    <p>Total score:</p>
+                </div>
+            </div>
+
+            <div class="buffer-container"></div>
+
+            <!-- Player board: Human/User -->
+            <div class="player-board">
+                <div>
+                    <h2>YOU</h2>
+                </div>
+                <div class="dice-container">
+                    <div id="human-die-1">
+                        <img class="die-image" id="human-die-image-1" src="" alt="">
+                    </div>
+                    <div id="human-die-2">
+                        <img class="die-image" id="human-die-image-2" src="" alt="">
+                    </div>
+                </div>
+                <div id="human-results-current">
+                    <p>Current score:</p>
+                </div>
+                <div  class="total-score" id="human-results-total">
+                    <p>Total score:</p>
+                </div>
+            </div>
+            <div class="buffer-container"></div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="btn-container">
+            <button class="button" id="roll-dice">Roll dice</button>
+        </div>
+        <div class="btn-container">
+            <button class="button" id="new-game">New game</button>
+        </div>
 
         <h2>Winner</h2>
         <div id="output-winner"></div>

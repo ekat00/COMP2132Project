@@ -1,3 +1,24 @@
+/* Variables */
+$primary_colour: darkgreen;
+$secondary_colour: lightpink;
+
+$text_colour: black;
+$body_font: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+$margins: 20px;
+
+
+/* Mixins */
+@mixin button($width, $height, $background-colour, $border-colour){
+    background-color: $background-colour;
+    width: $width;
+    height: $height;
+    border-color: $border-colour;
+
+    color: black;
+}
+
+
 html {
     height: 100%;
 }
@@ -31,11 +52,55 @@ header {
     flex-direction: column;
 }
 
+.player-board-container {
+    display: flex;
+    justify-content: center;
+    //margin: 0px 100px;
+    background-color: $secondary_colour;
+}
+
+.player-board-container div {
+    text-align: center;
+}
+
+.buffer-container {
+    min-width: 85px;
+}
+
+.player-board {
+    min-width: 350px;
+    height: 300px;
+    margin: 0px 20px;
+    background-color: lightgreen;
+}
+
+.dice-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 150px;
+}
+
+.dice-container img {
+    width: 50px;
+}
+
+.total-score {
+    background-color: lightskyblue;
+}
+
+/* Buttons */
+.btn-container {
+    display: flex;
+    justify-content: center;
+    margin: $margins;
+}
+
 footer {
     background-color: lightcyan;
     margin-top: 30px;
 }
 
 h2 {
-    margin-top: 60px;
+    margin-top: 10px;
 }

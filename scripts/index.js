@@ -70,6 +70,17 @@ function calculateCurrentScore(die1, die2){
             Show winner
 */
 
+// function to change the die image based on the rolled die value
+function changeDieImage(targetElement, dieValue){
+    targetElement.setAttribute("src", "images/die"+dieValue+".png");
+    targetElement.setAttribute("alt", "Die value: "+dieValue);
+}
+
+const humanDieImage1 = document.getElementById("human-die-image-1");
+const humanDieImage2 = document.getElementById("human-die-image-2");
+const computerDieImage1 = document.getElementById("computer-die-image-1");
+const computerDieImage2 = document.getElementById("computer-die-image-2");
+
 // Create function for the above
 function rollDiceHuman(){
     // Human
@@ -80,8 +91,8 @@ function rollDiceHuman(){
     let humanDieValue1 = humanDie1.rollDice();
     let humanDieValue2 = humanDie2.rollDice();
     // show dice values
-    diceRollHuman1.innerHTML = `<p>Die1: ${humanDieValue1}</p>`;
-    diceRollHuman2.innerHTML = `<p>Die2: ${humanDieValue2}</p>`;
+    changeDieImage(humanDieImage1, humanDieValue1);
+    changeDieImage(humanDieImage2, humanDieValue2);
     // calculate score
     let currentScoreHuman = calculateCurrentScore(humanDieValue1, humanDieValue2);
     // Show current round score
@@ -101,8 +112,8 @@ function rollDiceComputer(){
     let computerDieValue1 = computerDie1.rollDice();
     let computerDieValue2 = computerDie2.rollDice();
     // show dice values
-    diceRollComputer1.innerHTML = `<p>Die1: ${computerDieValue1}</p>`;
-    diceRollComputer2.innerHTML = `<p>Die2: ${computerDieValue2}</p>`;
+    changeDieImage(computerDieImage1, computerDieValue1);
+    changeDieImage(computerDieImage2, computerDieValue2);
     // calculate score
     let currentScoreComputer = calculateCurrentScore(computerDieValue1, computerDieValue2);
     // Show current round score
@@ -110,8 +121,6 @@ function rollDiceComputer(){
     // add current score to total score
     totalScoreComputer += currentScoreComputer;
     totalResultsComputer.innerHTML = `<p>Total score: ${totalScoreComputer}</p>`;
-
-    // Count as a dice round
     
 }
 
@@ -129,10 +138,9 @@ function determineWinner(){
 }
 
 
-// Invoke function on roll dice button click
+// Roll dice when user clicks on the Roll Dice button
 buttonRollDice.addEventListener("click", function(){
     diceRounds += 1;
-    console.log(diceRounds);
     rollDiceHuman();
     rollDiceComputer();
     if( diceRounds === 3 ){
@@ -147,12 +155,16 @@ function clearScores(){
     // clear dice values
     humanDieValue1 = 0;
     humanDieValue2 = 0;
-    diceRollHuman1.innerHTML = `<p>Die1: ${humanDieValue1}</p>`;
-    diceRollHuman2.innerHTML = `<p>Die2: ${humanDieValue2}</p>`;
+    humanDieImage1.setAttribute("src", "")
+    humanDieImage1.setAttribute("alt", "");
+    humanDieImage2.setAttribute("src", "");
+    humanDieImage2.setAttribute("alt", "");
     computerDieValue1 = 0;
     computerDieValue2 = 0;
-    diceRollComputer1.innerHTML = `<p>Die1: ${computerDieValue1}</p>`;
-    diceRollComputer2.innerHTML = `<p>Die2: ${computerDieValue2}</p>`;
+    computerDieImage1.setAttribute("src", "");
+    computerDieImage1.setAttribute("alt", "");
+    computerDieImage2.setAttribute("src", "");
+    computerDieImage2.setAttribute("alt", "");
     // clear current scores
     currentScoreHuman = 0;
     currentScoreComputer = 0;

@@ -1,3 +1,5 @@
+/* Variables */
+/* Mixins */
 html {
   height: 100%;
 }
@@ -31,11 +33,54 @@ header {
   flex-direction: column;
 }
 
+.player-board-container {
+  display: flex;
+  justify-content: center;
+  background-color: lightpink;
+}
+
+.player-board-container div {
+  text-align: center;
+}
+
+.buffer-container {
+  min-width: 85px;
+}
+
+.player-board {
+  min-width: 350px;
+  height: 300px;
+  margin: 0px 20px;
+  background-color: lightgreen;
+}
+
+.dice-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 150px;
+}
+
+.dice-container img {
+  width: 50px;
+}
+
+.total-score {
+  background-color: lightskyblue;
+}
+
+/* Buttons */
+.btn-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
 footer {
   background-color: lightcyan;
   margin-top: 30px;
 }
 
 h2 {
-  margin-top: 60px;
+  margin-top: 10px;
 }
