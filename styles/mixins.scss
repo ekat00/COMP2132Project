@@ -1,0 +1,9 @@
+/* Mixins */
+@mixin button($width, $height, $background-colour, $border-colour){
+    background-color: $background-colour;
+    width: $width;
+    height: $height;
+    border-color: $border-colour;
+
+    color: black;
+}

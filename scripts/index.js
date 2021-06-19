@@ -17,8 +17,11 @@ const currentResultsComputer = document.getElementById("computer-results-current
 const totalResultsHuman = document.getElementById("human-results-total");
 const totalResultsComputer = document.getElementById("computer-results-total");
 
-// Element to show winner
-const outputWinner = document.getElementById("output-winner");
+// Elements on popup
+const popup = document.getElementById("popup");
+const closePopup = document.getElementById("close-popup");
+const popupWinner = document.getElementById("popup-winner");
+const popupScores = document.getElementById("popup-scores");
 
 // Keep track of dice rounds (max 3)
 let diceRounds = 0;
@@ -50,25 +53,6 @@ function calculateCurrentScore(die1, die2){
         return die1 + die2;
     }
 }
-
-/*
-    Run through a round when user clicks the Roll Dice button
-        Create 2 dice objects for human
-            Roll dice
-            Show dice
-        Create 2 dice objects for computer
-            Roll dice
-            Show dice
-        Calculate human score
-            Show current score
-            Add score to totalScoreHuman
-        Calculate computer score
-            Show current score
-            Add score to totalScoreComputer
-        Have something to count how many dice rounds
-            Once 3 rounds played, compare total scores and determine winner
-            Show winner
-*/
 
 // function to change the die image based on the rolled die value
 function changeDieImage(targetElement, dieValue){
@@ -137,6 +121,32 @@ function determineWinner(){
     }
 }
 
+// Default to not showing popup
+let popupFadeInHandler;
+let opacityValue = 0;
+
+// Function for fade-in animation
+function fadeIn(){
+    opacityValue = opacityValue + .05;
+    if(opacityValue <= 1){
+        popup.style.opacity = opacityValue;
+        requestAnimationFrame( fadeIn );
+    }else{
+        popup.style.opacity = 1;
+    }    
+}
+
+// Function to open popup
+function displayPopup(){
+    popupFadeInHandler = requestAnimationFrame( fadeIn );
+}
+
+// Close popup
+closePopup.addEventListener("click", function(){
+    popup.style.opacity = 0;
+});
+
+
 
 // Roll dice when user clicks on the Roll Dice button
 buttonRollDice.addEventListener("click", function(){
@@ -145,11 +155,17 @@ buttonRollDice.addEventListener("click", function(){
     rollDiceComputer();
     if( diceRounds === 3 ){
         determineWinner();
-        outputWinner.innerHTML = winner;
+        displayPopup(); 
+        popupWinner.innerHTML = winner;
+        popupScores.innerHTML = `<p>Your score: ${totalScoreHuman}</p>`;
+        popupScores.innerHTML += `<p>Computer score: ${totalScoreComputer}</p>`;
         buttonRollDice.disabled = true;
     }
     
 });
+
+
+
 
 function clearScores(){
     // clear dice values
@@ -176,7 +192,8 @@ function clearScores(){
     totalResultsHuman.innerHTML = `<p>Total score: ${totalScoreHuman}</p>`;
     totalResultsComputer.innerHTML = `<p>Total score: ${totalScoreComputer}</p>`;
     // clear winner and dice round
-    outputWinner.innerHTML = "";
+    popupWinner.innerHTML = "";
+    popupScores.innerHTML = "";
     diceRounds = 0;
 }
 

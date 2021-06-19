@@ -1,0 +1,45 @@
+#popup{
+    width:350px;
+    height: 350px;
+    padding:10px;
+    background-color: indianred;
+    color:white;
+    border:solid 1px black;
+    box-shadow:0px 0px 5px yellow, 5px 5px 5px black;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    /*
+    animate this opacity property
+    from 0 to 1    
+    */
+    opacity:0;
+    /* 
+    ensure pointer events will go 'through' this section tag 
+    since it might  otherwise overlap the buttons and make them unclickable
+    */
+    pointer-events: none;
+}
+
+/* the close X button*/
+#close-popup{
+	position:absolute;
+    top:10px;
+    right:10px;
+    font-weight: bold;
+    background-color: inherit;
+    color:inherit;
+    border:solid 1px white;
+    cursor:pointer;
+    /* ensure pointer events will apply to the button */
+    pointer-events: all;
+}
+
+#close-popup:hover, 
+#close-popup:focus, 
+#close-popup:active{
+	background-color: rgb(145, 232, 235);
+	color:white;
+	transform: scale(1.3);
+}
