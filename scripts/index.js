@@ -1,13 +1,70 @@
+/* 
+-------------
+Popup - Game Rules
+-------------
+*/
+
+// Grab popup elements
+const linkRules = document.getElementById("rules-link");
+const popupRules = document.getElementById("popup-rules");
+const closePopupRules = document.getElementById("close-popup-rules");
+
+let popupFadeInRulesHandler;
+let opacityValueRules = 0;
+
+// Function for fade-in animation on popup
+function fadeInRules(){
+    opacityValueRules = opacityValueRules + .05;
+    if(opacityValueRules <= 1){
+        popupRules.style.opacity = opacityValueRules;
+        requestAnimationFrame( fadeInRules );
+    }else{
+        popupRules.style.opacity = 1;
+    }    
+}
+
+function displayRulesPopup(){
+    //popupRules.style.opacity = 1;
+    popupFadeInRulesHandler = requestAnimationFrame( fadeInRules );
+}
+
+// Function to open popup
+// linkRules.addEventListener("click", function(){
+//     popupFadeInRulesHandler = requestAnimationFrame( fadeInRules );
+// });
+
+linkRules.addEventListener("click", function(){
+    displayRulesPopup();
+});
+
+// Close popup
+closePopupRules.addEventListener("click", function(){
+    popupRules.style.opacity = 0;
+});
+
+
+/* 
+-------------
+Dice Game - logic
+-------------
+*/
+
 // Grab elements
 // Buttons
 const buttonRollDice = document.getElementById("roll-dice");
 const buttonNewGame = document.getElementById("new-game");
 
-// Elements to show dice rolls
+// Elements to show dice rolls (NOTE: do I need these anymore?)
 const diceRollHuman1 = document.getElementById("human-die-1");
 const diceRollHuman2 = document.getElementById("human-die-2");
 const diceRollComputer1 = document.getElementById("computer-die-1");
 const diceRollComputer2 = document.getElementById("computer-die-2");
+
+// Elements to show dice images
+const humanDieImage1 = document.getElementById("human-die-image-1");
+const humanDieImage2 = document.getElementById("human-die-image-2");
+const computerDieImage1 = document.getElementById("computer-die-image-1");
+const computerDieImage2 = document.getElementById("computer-die-image-2");
 
 // Elements to show current score
 const currentResultsHuman = document.getElementById("human-results-current");
@@ -22,6 +79,7 @@ const popup = document.getElementById("popup");
 const closePopup = document.getElementById("close-popup");
 const popupWinner = document.getElementById("popup-winner");
 const popupScores = document.getElementById("popup-scores");
+const popupWinnerImage = document.getElementById("winner-image");
 
 // Keep track of dice rounds (max 3)
 let diceRounds = 0;
@@ -60,12 +118,9 @@ function changeDieImage(targetElement, dieValue){
     targetElement.setAttribute("alt", "Die value: "+dieValue);
 }
 
-const humanDieImage1 = document.getElementById("human-die-image-1");
-const humanDieImage2 = document.getElementById("human-die-image-2");
-const computerDieImage1 = document.getElementById("computer-die-image-1");
-const computerDieImage2 = document.getElementById("computer-die-image-2");
 
-// Create function for the above
+
+// Function to create dice, roll, and display dice/scores for player 2
 function rollDiceHuman(){
     // Human
     // create dice objects
@@ -80,13 +135,14 @@ function rollDiceHuman(){
     // calculate score
     let currentScoreHuman = calculateCurrentScore(humanDieValue1, humanDieValue2);
     // Show current round score
-    currentResultsHuman.innerHTML = `Current score: ${currentScoreHuman}`;
+    currentResultsHuman.innerHTML = `<p>Current score: ${currentScoreHuman}</p>`;
     // add current score to total score
     totalScoreHuman += currentScoreHuman;
     totalResultsHuman.innerHTML = `<p>Total score: ${totalScoreHuman}</p>`;
 
 }
 
+// Function to create dice, roll, and display dice/scores for player 1
 function rollDiceComputer(){
     // Computer
     // create dice objects
@@ -101,7 +157,7 @@ function rollDiceComputer(){
     // calculate score
     let currentScoreComputer = calculateCurrentScore(computerDieValue1, computerDieValue2);
     // Show current round score
-    currentResultsComputer.innerHTML = `Current score: ${currentScoreComputer}`;
+    currentResultsComputer.innerHTML = `<p>Current score: ${currentScoreComputer}</p>`;
     // add current score to total score
     totalScoreComputer += currentScoreComputer;
     totalResultsComputer.innerHTML = `<p>Total score: ${totalScoreComputer}</p>`;
@@ -109,23 +165,31 @@ function rollDiceComputer(){
 }
 
 let winner = "";
+let winnerImage = "";
 
 // function to determine winner
 function determineWinner(){
     if( totalScoreHuman > totalScoreComputer ){
-        winner = "Congrats, you win this round!";
+        winner = "FATALITY. You lose.";
+        winnerImage = "images/scorpion_lose.gif";
     }else if ( totalScoreHuman < totalScoreComputer ){
-        winner = "You lost... bummer."
+        winner = "FLAWLESS VICTORY. You win!"
+        winnerImage = "images/scorpion_win.gif";
     }else {
-        winner = "It's a tie. Better try again!"
+        winner = "TIE. The battle is not yet over. Try again!"
+        winnerImage = "images/scorpion_tie.gif";
     }
 }
 
-// Default to not showing popup
+// Function to change the gif image in the popup
+function changeWinnerImage(targetElement, image){
+    targetElement.setAttribute("src", image);
+}
+
 let popupFadeInHandler;
 let opacityValue = 0;
 
-// Function for fade-in animation
+// Function for fade-in animation on popup
 function fadeIn(){
     opacityValue = opacityValue + .05;
     if(opacityValue <= 1){
@@ -157,8 +221,9 @@ buttonRollDice.addEventListener("click", function(){
         determineWinner();
         displayPopup(); 
         popupWinner.innerHTML = winner;
-        popupScores.innerHTML = `<p>Your score: ${totalScoreHuman}</p>`;
-        popupScores.innerHTML += `<p>Computer score: ${totalScoreComputer}</p>`;
+        popupScores.innerHTML = `<p>Your score: ${totalScoreComputer}</p>`;
+        popupScores.innerHTML += `<p>Sub-Zero's score: ${totalScoreHuman}</p>`;
+        changeWinnerImage(popupWinnerImage, winnerImage);
         buttonRollDice.disabled = true;
     }
     
@@ -184,8 +249,8 @@ function clearScores(){
     // clear current scores
     currentScoreHuman = 0;
     currentScoreComputer = 0;
-    currentResultsHuman.innerHTML = `Current score: ${currentScoreHuman}`;
-    currentResultsComputer.innerHTML = `Current score: ${currentScoreComputer}`;
+    currentResultsHuman.innerHTML = `<p>Current score: ${currentScoreHuman}</p>`;
+    currentResultsComputer.innerHTML = `<p>Current score: ${currentScoreComputer}</p>`;
     // clear total scores
     totalScoreHuman = 0;
     totalScoreComputer = 0;

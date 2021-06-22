@@ -10,13 +10,15 @@
 </head>
 <body>
     <header>
+        <div class="title">
+            <img src="images/fire.png" class="header-img">
+            <h1>MORTAL KOMBAT: DEADLY DICE</h1>
+            <img src="images/ice.png" class="header-img">
+        </div>
         <div>
-            <h1>Project: Dice Game</h1>
+            <a href="#0" id="rules-link">Game Rules</a>
         </div>
-        <div class="h-info">
-            <div>Katie Mah</div>
-            <div>A00162118</div>
-        </div>
+        
     </header>
     <main>
         <div id="rounds-counter-title"><h1></h1></div>
@@ -24,9 +26,9 @@
         <div class="player-board-container">
             <div class="buffer-container"></div>
             <!-- Player board: Computer -->
-            <div class="player-board">
+            <div class="player-board" id="player-board-computer">
                 <div>
-                    <h2>COMPUTER</h2>
+                    <h2>SCORPION (You)</h2>
                 </div>
 
                 <div class="dice-container">
@@ -38,7 +40,7 @@
                     </div>
                 </div>
 
-                <div id="computer-results-current">
+                <div class="current-score" id="computer-results-current">
                     <p>Current score:</p>
                 </div>
 
@@ -50,9 +52,9 @@
             <div class="buffer-container"></div>
 
             <!-- Player board: Human/User -->
-            <div class="player-board">
+            <div class="player-board" id="player-board-human">
                 <div>
-                    <h2>YOU</h2>
+                    <h2>SUB-ZERO</h2>
                 </div>
                 <div class="dice-container">
                     <div id="human-die-1">
@@ -62,7 +64,7 @@
                         <img class="die-image" id="human-die-image-2" src="" alt="">
                     </div>
                 </div>
-                <div id="human-results-current">
+                <div class="current-score" id="human-results-current">
                     <p>Current score:</p>
                 </div>
                 <div  class="total-score" id="human-results-total">
@@ -83,14 +85,42 @@
         
     </main>
     <footer>
-        <p>COMP 2132</p>
+        <p>This game is best viewed with a browser window equal to or greater than 1025x680.</p>
     </footer>
-    
+
+    <!-- Popup for rules -->
+    <section id="popup-rules">
+        <button id="close-popup-rules">&#x2715</button>
+        <h2>GAME RULES</h2>
+        <p>It's you, SCORPION, against your mortal enemy SUB-ZERO!</p>
+        <p>The rules are simple:</p>
+        <ul>
+            <li>Each game consists of 3 dice rolls</li>
+            <li>The sum of the dice is your current score</li>
+            <li>The sum of the rolls is your total score</li>
+            <li>If you roll a double, you get double points! E.g. rolling two 3s gives you 12 points ((3+3)*2)</li>
+            <li>If you roll a 1, you get zero (0) points for that roll</li>
+            <li>The player with the most points after 3 rolls is the winner!</li>
+        </ul>
+        <br>
+        <h3>Ok cool. But why Mortal Kombat?</h3>
+        <p>Because why not!</p>
+        <h3>Scorpion isn't my favourite. Can I choose another player?</h3>
+        <p>No.</p>
+        <h3>Well... can't I just pretend to be Sub-Zero in this game?</h3>
+        <p>Also no.</p>
+        <p>For real, why are you reading this when you can be throwing down (some dice) with Scorpion and Sub-Zero? TEST YOUR MIGHT!</p>
+    </section>
+
     <!-- Popup when game is over -->
     <section id="popup">
         <button id="close-popup">&#x2715</button>
         <h2 id="popup-winner">Winner</h2>
         <div id="popup-scores"></div>
+        <br>
+        <div>
+            <img src="" id="winner-image">
+        </div>
     </section>
 
 </body>

@@ -1,9 +1,15 @@
 /* Mixins */
-@mixin button($width, $height, $background-colour, $border-colour){
+@mixin button($background-colour, $border, $font-colour, $font-size){
     background-color: $background-colour;
-    width: $width;
-    height: $height;
-    border-color: $border-colour;
+    width: 160px;
+    height: 50px;
+    border: $border;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: $font-size;
 
-    color: black;
+    color: $font-colour;
+
+    cursor:pointer;
+    pointer-events: all;
 }

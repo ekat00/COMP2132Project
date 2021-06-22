@@ -1,28 +1,65 @@
-#popup{
-    width:350px;
-    height: 350px;
-    padding:10px;
-    background-color: indianred;
+/*
+--- GAME RULES POPUP ---
+*/
+#popup-rules {
+    width: 600px;
+    height: 600px;
+    padding: 20px;
+    background-color: cadetblue;
     color:white;
     border:solid 1px black;
-    box-shadow:0px 0px 5px yellow, 5px 5px 5px black;
+    box-shadow:0px 0px 5px greenyellow, 5px 5px 5px black;
     position:absolute;
     top:50%;
     left:50%;
     transform:translate(-50%, -50%);
-    /*
-    animate this opacity property
-    from 0 to 1    
-    */
+
     opacity:0;
-    /* 
-    ensure pointer events will go 'through' this section tag 
-    since it might  otherwise overlap the buttons and make them unclickable
-    */
     pointer-events: none;
 }
 
-/* the close X button*/
+#close-popup-rules {
+	position:absolute;
+    top:10px;
+    right:10px;
+    font-weight: bold;
+    background-color: inherit;
+    color:inherit;
+    border:solid 1px white;
+    cursor:pointer;
+    pointer-events: all;
+}
+
+#close-popup-rules:hover, 
+#close-popup-rules:focus, 
+#close-popup-rules:active{
+	background-color: rgb(145, 232, 235);
+	color:white;
+	transform: scale(1.3);
+}
+
+/*
+--- WINNER POPUP ---
+*/
+#popup{
+    width:400px;
+    height: 400px;
+    padding: 40px 10px;
+    background-color: darkslategrey;
+    color:white;
+    border:solid 1px black;
+    box-shadow:0px 0px 5px lightgreen, 5px 5px 5px black;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+
+    opacity:0;
+
+    pointer-events: none;
+    text-align: center;
+}
+
 #close-popup{
 	position:absolute;
     top:10px;
@@ -32,14 +69,15 @@
     color:inherit;
     border:solid 1px white;
     cursor:pointer;
-    /* ensure pointer events will apply to the button */
     pointer-events: all;
 }
 
 #close-popup:hover, 
 #close-popup:focus, 
 #close-popup:active{
-	background-color: rgb(145, 232, 235);
+	background-color: rgb(118, 197, 197);
 	color:white;
 	transform: scale(1.3);
 }
+
+
