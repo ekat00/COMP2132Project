@@ -20,6 +20,7 @@ function fadeInRules(){
         requestAnimationFrame( fadeInRules );
     }else{
         popupRules.style.opacity = 1;
+        opacityValueRules = 0;
     }
 }
 
@@ -200,6 +201,7 @@ function fadeIn(){
         requestAnimationFrame( fadeIn );
     }else{
         popup.style.opacity = 1;
+        opacityValue = 0;
     }    
 }
 
