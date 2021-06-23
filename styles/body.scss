@@ -73,7 +73,6 @@ a:hover {
     display: flex;
     justify-content: center;
     margin: 30px 0px;
-    //background-color: $secondary_colour;
 }
 
 .player-board-container div {
@@ -145,15 +144,4 @@ a:hover {
 
 #new-game:hover {
     @include button(rgb(19, 19, 228), $button_border, white);
-}
-
-footer {
-    background-color: $primary_colour;
-    margin-top: 30px;
-    text-align: center;
-}
-
-footer > p {
-    color: $primary_font_colour;
-    font-size: 12px;
 }

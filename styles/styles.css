@@ -197,17 +197,6 @@ a:hover {
   pointer-events: all;
 }
 
-footer {
-  background-color: black;
-  margin-top: 30px;
-  text-align: center;
-}
-
-footer > p {
-  color: white;
-  font-size: 12px;
-}
-
 /*
 --- GAME RULES POPUP ---
 */
