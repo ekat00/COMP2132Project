@@ -1,13 +1,14 @@
 /* Mixins */
-@mixin button($background-colour, $border, $font-colour, $font-size){
+@mixin button($background-colour, $border, $font-colour){
     background-color: $background-colour;
     width: 160px;
-    height: 50px;
+    height: 55px;
     border: $border;
     padding: 10px;
     border-radius: 10px;
-    font-size: $font-size;
 
+    font-family: $title-font;;
+    font-size: 25px;
     color: $font-colour;
 
     cursor:pointer;

@@ -6,6 +6,7 @@ body {
     min-height: 100%;
     height: 100%;
     margin: 0;
+    min-width: 1024px;
     font-family: $body-font;
     display: flex;
     flex-direction: column;
@@ -48,7 +49,10 @@ header {
 }
 
 h1 {
+    font-family: $title_font;
     color: $primary_font_colour;
+    font-size: 40px;
+    margin: 15px 0px;
 }
 
 h2 {
@@ -83,7 +87,7 @@ a:hover {
 .player-board {
     min-width: 300px;
     height: 300px;
-    border-radius: 10%;
+    border-radius: 5%;
 }
 
 #player-board-computer {
@@ -123,24 +127,24 @@ a:hover {
 }
 
 #roll-dice {
-    @include button(rgb(252, 103, 4), $button_border, rgb(255, 255, 255), 20px);
+    @include button(rgb(252, 103, 4), $button_border, rgb(255, 255, 255));
 }
 
 #roll-dice:hover {
-    @include button(darkorange, $button_border, rgb(255, 255, 255), 20px);
+    @include button(darkorange, $button_border, rgb(255, 255, 255));
 }
 
 #roll-dice:disabled {
-    @include button(rgb(200, 200, 200), none, rgb(219, 219, 219), 20px);
+    @include button(rgb(200, 200, 200), none, rgb(219, 219, 219));
     cursor: default;
 }
 
 #new-game {
-    @include button(darkblue, $button_border, white, 20px);
+    @include button(darkblue, $button_border, white);
 }
 
 #new-game:hover {
-    @include button(rgb(19, 19, 228), $button_border, white, 20px);
+    @include button(rgb(19, 19, 228), $button_border, white);
 }
 
 footer {

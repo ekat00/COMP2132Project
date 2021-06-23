@@ -1,6 +1,6 @@
 /* 
 -------------
-Popup - Game Rules
+Popup for Game Rules
 -------------
 */
 
@@ -20,26 +20,18 @@ function fadeInRules(){
         requestAnimationFrame( fadeInRules );
     }else{
         popupRules.style.opacity = 1;
-    }    
-}
-
-function displayRulesPopup(){
-    //popupRules.style.opacity = 1;
-    popupFadeInRulesHandler = requestAnimationFrame( fadeInRules );
+    }
 }
 
 // Function to open popup
-// linkRules.addEventListener("click", function(){
-//     popupFadeInRulesHandler = requestAnimationFrame( fadeInRules );
-// });
-
 linkRules.addEventListener("click", function(){
-    displayRulesPopup();
+    popupFadeInRulesHandler = requestAnimationFrame( fadeInRules );
 });
 
 // Close popup
 closePopupRules.addEventListener("click", function(){
     popupRules.style.opacity = 0;
+    cancelAnimationFrame(popupFadeInRulesHandler);
 });
 
 
@@ -47,6 +39,11 @@ closePopupRules.addEventListener("click", function(){
 -------------
 Dice Game - logic
 -------------
+
+Note on variable names: I used Computer vs Human as the two player variable names. 
+I decided on the theme (Mortal Kombat) afterwards, so the names don't match up and thus they may be confusing. The names match as follows:
+    Computer = Scorpion
+    Human = Sub-Zero
 */
 
 // Grab elements
@@ -119,8 +116,7 @@ function changeDieImage(targetElement, dieValue){
 }
 
 
-
-// Function to create dice, roll, and display dice/scores for player 2
+// Function to create dice, roll, and display dice/scores for player 2 (Sub-Zero)
 function rollDiceHuman(){
     // Human
     // create dice objects
@@ -142,7 +138,7 @@ function rollDiceHuman(){
 
 }
 
-// Function to create dice, roll, and display dice/scores for player 1
+// Function to create dice, roll, and display dice/scores for player 1 (Scorpion)
 function rollDiceComputer(){
     // Computer
     // create dice objects
@@ -186,6 +182,13 @@ function changeWinnerImage(targetElement, image){
     targetElement.setAttribute("src", image);
 }
 
+
+/* 
+-------------
+Popup for Declaring Winner
+-------------
+*/
+
 let popupFadeInHandler;
 let opacityValue = 0;
 
@@ -211,6 +214,11 @@ closePopup.addEventListener("click", function(){
 });
 
 
+/* 
+-------------
+Roll Dice & Reset (New) Game
+-------------
+*/
 
 // Roll dice when user clicks on the Roll Dice button
 buttonRollDice.addEventListener("click", function(){
@@ -228,8 +236,6 @@ buttonRollDice.addEventListener("click", function(){
     }
     
 });
-
-
 
 
 function clearScores(){
